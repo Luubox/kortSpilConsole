@@ -43,7 +43,7 @@ namespace kortSpilConsole
                 int i = Convert.ToInt32(Console.ReadLine());
 
                 //TODO prøv at 'spille' det valgte kort til bunken
-                if (deck.playCard(currentPlayer.Hand[i - 1]))
+                if (deck.PlayCard(currentPlayer.Hand[i - 1]))
                 {
                     currentPlayer.Hand.Remove(currentPlayer.Hand[i - 1]);
 
