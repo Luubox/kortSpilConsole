@@ -17,22 +17,45 @@ namespace kortSpilConsole
             this.game = game;
             for (int i = 0; i < 10; i++)
             {
-                // red cards
                 cards.Add(new Card("red", ""+i));
-                cards.Add(new Card("red", ""+i));
-                //blue cards
                 cards.Add(new Card("blue", ""+i));
-                cards.Add(new Card("blue", ""+i));
-                //green cards
                 cards.Add(new Card("green", ""+i));
-                cards.Add(new Card("green", ""+i));
-                //yellow cards
-                cards.Add(new Card("yellow", ""+i));
                 cards.Add(new Card("yellow", ""+i));
 
-                
+                if (i != 0)
+                {
+                    cards.Add(new Card("red", ""+i));
+                    cards.Add(new Card("blue", ""+i));
+                    cards.Add(new Card("green", ""+i));
+                    cards.Add(new Card("yellow", "" + i));
+                }
             }
-            cards.Add(new Card("red", "+2"));
+
+            for (int i = 0; i < 2; i++)
+            {
+                cards.Add(new Card("red", "skip"));
+                cards.Add(new Card("red", "reverse"));
+                cards.Add(new Card("red", "+2"));
+
+                cards.Add(new Card("blue", "skip"));
+                cards.Add(new Card("blue", "reverse"));
+                cards.Add(new Card("blue", "+2"));
+
+                cards.Add(new Card("green", "skip"));
+                cards.Add(new Card("green", "reverse"));
+                cards.Add(new Card("green", "+2"));
+
+                cards.Add(new Card("yellow", "skip"));
+                cards.Add(new Card("yellow", "reverse"));
+                cards.Add(new Card("yellow", "+2"));
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                cards.Add(new Card("black", "changeColour"));
+                cards.Add(new Card("black", "+4"));
+            }
+
 
             Shuffle();
 
