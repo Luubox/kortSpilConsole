@@ -20,7 +20,7 @@ namespace kortSpilConsole
             
             _players.Add(new Player("Alfa", this));
             _players.Add(new Player("Beta", this));
-            _currentPlayer = _players.First();
+            _currentPlayer =   _players.First();
             //del kort ud til spiller 1;
             _players[0].DrawCard(7);
 #if DEBUG
@@ -59,7 +59,7 @@ namespace kortSpilConsole
                 }
                 else if (Deck.PlayCard(_currentPlayer.Hand[Convert.ToInt32(playerChoice) - 1], counter, _currentPlayer))
                 {
-                    NextPlayer();
+                    NextPlayer(); 
                 }
                 else
                 {
