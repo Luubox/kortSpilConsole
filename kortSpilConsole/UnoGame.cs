@@ -21,8 +21,11 @@ namespace kortSpilConsole
             players.Add(new Player("Alfa", this));
             players.Add(new Player("Beta", this));
             currentPlayer = players.First();
-            //del 7 kort ud til spillerne
-            for (int i = 0; i < players.Count; i++)
+            //del kort ud til spiller 1;
+            players[0].DrawCard(6);
+            players[0].DebugDrawCard("red", "+2");
+            //del 7 kort ud til resten af spilelrne
+            for (int i = 1; i < players.Count; i++)
             {
                 players[i].DrawCard(7);
             }
