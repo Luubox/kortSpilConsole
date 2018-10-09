@@ -52,7 +52,7 @@ namespace kortSpilConsole
 
             for (int i = 0; i < 4; i++)
             {
-                cards.Add(new Card("black", "changeColour"));
+                cards.Add(new Card("black", "changeColor"));
                 cards.Add(new Card("black", "+4"));
             }
 
