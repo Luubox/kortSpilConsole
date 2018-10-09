@@ -124,7 +124,7 @@ namespace kortSpilConsole
                 cardsRevealed.Add(card);
                 return true;
             }
-            else if (card.Color == "black")
+            else if (card.Color == "black") //TODO: fix case hvor eneste kort i bunken er +4 sort, og du vælger nyt +4 sort (skift farve virker ikke)
             {
                 Console.WriteLine("Choose color:");
                 card.Color = Console.ReadLine();

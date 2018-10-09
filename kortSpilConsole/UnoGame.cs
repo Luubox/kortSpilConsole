@@ -38,7 +38,7 @@ namespace kortSpilConsole
                 counter++;
                 // vis vores 'revealed' card
                 Console.WriteLine(Deck.Peek());
-                if (Deck.Peek().Value == "+4" && counter > 1)
+                if (Deck.Peek().Value == "+4" && counter > 1) //TODO: flyt funktionalitet til switch case / if statement, ellers trækker den ved Pass
                 {
                     _currentPlayer.DrawCard(4);
                 }
@@ -47,11 +47,11 @@ namespace kortSpilConsole
                 Console.WriteLine(_currentPlayer);
 
                 // spørg spiller1 om hvilket kort han vil ligge ned
-                Console.WriteLine("Vælg et kort! (eller Pass)");
+                Console.WriteLine("Vælg et kort! (eller pass)");
                 //int i = Convert.ToInt32(Console.ReadLine());
 
-                string playerChoice = Console.ReadLine();
-                if (playerChoice == "Pass")
+                string playerChoice = Console.ReadLine()?.ToUpper();
+                if (playerChoice == "PASS")
                 {
                     _currentPlayer.DrawCard();
                     NextPlayer();
