@@ -22,7 +22,7 @@ namespace kortSpilConsole
        
         public void DrawCard()
         {
-            Hand.Add(game.deck.Draw());
+            Hand.Add(game.Deck.Draw());
         }
 
         public void DrawCard(int numberOfCards)
@@ -35,7 +35,7 @@ namespace kortSpilConsole
 
         public void DebugDrawCard(String Color, String Value)
         {
-            Hand.Add(game.deck.DebugDraw(Color, Value));
+            Hand.Add(game.Deck.DebugDraw(Color, Value));
         }
 
         public override string ToString()

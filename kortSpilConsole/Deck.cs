@@ -94,15 +94,17 @@ namespace kortSpilConsole
             cards = cards.OrderBy(x => random.Next()).ToList();
         }
 
-        public bool PlayCard(Card card, int counter)
+        public bool PlayCard(Card card, int counter, Player player)
         {
             if (Peek().Color == card.Color || Peek().Value == card.Value)
             {
+                player.Hand.Remove(card);
                 cardsRevealed.Add(card);
                 return true;
             }
-            else if (card.Color == "black" && counter == 1)
+            else if (cardsRevealed.Last().Color == "black" && counter == 1)
             {
+                player.Hand.Remove(card);
                 cardsRevealed.Add(card);
                 return true;
             }

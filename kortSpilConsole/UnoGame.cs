@@ -9,42 +9,42 @@ namespace kortSpilConsole
 {
     class UnoGame
     {
-        public Deck deck;
-        List<Player> players = new List<Player>();
-        private Player currentPlayer;
-        private bool gameover = false;
+        public Deck Deck;
+        List<Player> _players = new List<Player>();
+        private Player _currentPlayer;
+        private bool _gameover = false;
 
         public UnoGame()
         {
-            deck = new Deck(this);
+            Deck = new Deck(this);
             
-            players.Add(new Player("Alfa", this));
-            players.Add(new Player("Beta", this));
-            currentPlayer = players.First();
+            _players.Add(new Player("Alfa", this));
+            _players.Add(new Player("Beta", this));
+            _currentPlayer = _players.First();
             //del kort ud til spiller 1;
-            players[0].DrawCard(7);
+            _players[0].DrawCard(7);
 #if DEBUG
-            players[0].DebugDrawCard("black", "changeColor"); 
+            _players[0].DebugDrawCard("black", "changeColor"); 
 #endif
             //del 7 kort ud til resten af spilelrne
-            for (int i = 1; i < players.Count; i++)
+            for (int i = 1; i < _players.Count; i++)
             {
-                players[i].DrawCard(7);
+                _players[i].DrawCard(1);
             }
 
             int counter = 0;
-            while (gameover != true)
+            while (_gameover != true)
             {
                 counter++;
                 // vis vores 'revealed' card
-                Console.WriteLine(deck.Peek());
-                if (deck.Peek().Value == "+4" && counter > 1)
+                Console.WriteLine(Deck.Peek());
+                if (Deck.Peek().Value == "+4" && counter > 1)
                 {
-                    currentPlayer.DrawCard(4);
+                    _currentPlayer.DrawCard(4);
                 }
 
                 // print player1 med tostring-metoden (navn: g2, b3, r7....)
-                Console.WriteLine(currentPlayer);
+                Console.WriteLine(_currentPlayer);
 
                 // spørg spiller1 om hvilket kort han vil ligge ned
                 Console.WriteLine("Vælg et kort! (eller Pass)");
@@ -53,32 +53,38 @@ namespace kortSpilConsole
                 string playerChoice = Console.ReadLine();
                 if (playerChoice == "Pass")
                 {
-                    currentPlayer.DrawCard();
-                    nextPlayer();
+                    _currentPlayer.DrawCard();
+                    NextPlayer();
 
                 }
-                else if (deck.PlayCard(currentPlayer.Hand[Convert.ToInt32(playerChoice) - 1], counter))
+                else if (Deck.PlayCard(_currentPlayer.Hand[Convert.ToInt32(playerChoice) - 1], counter, _currentPlayer))
                 {
-                    Console.WriteLine($"Pile: {deck.Peek()}");
-                    nextPlayer();
+                    NextPlayer();
                 }
                 else
                 {
                     Console.WriteLine("Invalid card! try again");
                 }
+
             }
+            Console.ReadKey();
         }
 
-        private void nextPlayer()
+        private void NextPlayer()
         {
-            if (currentPlayer == players.Last())
+            if (_currentPlayer.Hand.Count == 0)
             {
-                currentPlayer = players.First();
+                Console.WriteLine($"Congratulations {_currentPlayer.name}! You have won!");
+                _gameover = true;
+            }
+            else if (_currentPlayer == _players.Last())
+            {
+                _currentPlayer = _players.First();
             }
             else
             {
-                int currentPlayerPosition = players.IndexOf(currentPlayer);
-                currentPlayer = players[currentPlayerPosition + 1];
+                int currentPlayerPosition = _players.IndexOf(_currentPlayer);
+                _currentPlayer = _players[currentPlayerPosition + 1];
             }
         }
     }
