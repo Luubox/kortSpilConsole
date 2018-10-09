@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,6 +94,21 @@ namespace kortSpilConsole
             Random random = new Random();
             cards = cards.OrderBy(x => random.Next()).ToList();
         }
+
+        public bool PlayCard2(Card card, int counter, Player player)
+        {
+            switch (card.Color)
+            {
+                case "black":
+                    Console.WriteLine("Choose color:");
+                    card.Color = Console.ReadLine();
+                    cardsRevealed.Add(card);
+                    return true;
+                default:
+                    Console.WriteLine("nope");
+                    return false;
+            }
+        } //duer ikke
 
         public bool PlayCard(Card card, int counter, Player player)
         {
