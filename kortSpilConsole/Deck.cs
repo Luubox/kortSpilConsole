@@ -61,6 +61,9 @@ namespace kortSpilConsole
 
             //move first card to revealed cards
             cardsRevealed.Add(Draw());
+#if DEBUG
+            cardsRevealed.Add(new Card("black", "+4"));
+#endif
         }
         
         public Card Draw()
@@ -91,9 +94,14 @@ namespace kortSpilConsole
             cards = cards.OrderBy(x => random.Next()).ToList();
         }
 
-        public bool PlayCard(Card card)
+        public bool PlayCard(Card card, int counter)
         {
             if (Peek().Color == card.Color || Peek().Value == card.Value)
+            {
+                cardsRevealed.Add(card);
+                return true;
+            }
+            else if (card.Color == "black" && counter == 1)
             {
                 cardsRevealed.Add(card);
                 return true;

@@ -22,8 +22,10 @@ namespace kortSpilConsole
             players.Add(new Player("Beta", this));
             currentPlayer = players.First();
             //del kort ud til spiller 1;
-            players[0].DrawCard(6);
-            players[0].DebugDrawCard("black", "changeColor");
+            players[0].DrawCard(7);
+#if DEBUG
+            players[0].DebugDrawCard("black", "changeColor"); 
+#endif
             //del 7 kort ud til resten af spilelrne
             for (int i = 1; i < players.Count; i++)
             {
@@ -36,7 +38,7 @@ namespace kortSpilConsole
                 counter++;
                 // vis vores 'revealed' card
                 Console.WriteLine(deck.Peek());
-                if (deck.Peek().Value == "+4")
+                if (deck.Peek().Value == "+4" && counter > 1)
                 {
                     currentPlayer.DrawCard(4);
                 }
@@ -45,7 +47,7 @@ namespace kortSpilConsole
                 Console.WriteLine(currentPlayer);
 
                 // spørg spiller1 om hvilket kort han vil ligge ned
-                Console.WriteLine("Vælg et kort!");
+                Console.WriteLine("Vælg et kort! (eller Pass)");
                 //int i = Convert.ToInt32(Console.ReadLine());
 
                 string playerChoice = Console.ReadLine();
@@ -55,7 +57,7 @@ namespace kortSpilConsole
                     nextPlayer();
 
                 }
-                else if (deck.PlayCard(currentPlayer.Hand[Convert.ToInt32(playerChoice) - 1]))
+                else if (deck.PlayCard(currentPlayer.Hand[Convert.ToInt32(playerChoice) - 1], counter))
                 {
                     Console.WriteLine($"Pile: {deck.Peek()}");
                     nextPlayer();
