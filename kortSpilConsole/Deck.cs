@@ -95,6 +95,7 @@ namespace kortSpilConsole
             cards = cards.OrderBy(x => random.Next()).ToList();
         }
 
+        //TODO: Fix switch på object
         public bool PlayCard2(Card card, int counter, Player player)
         {
             switch (card.Color)
